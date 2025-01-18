@@ -4,6 +4,12 @@
 #include <string.h>
 #include <stdio.h>
 
+typedef struct Node {
+    struct Node *prev;
+    struct Node *next;
+    int value;
+} Node;
+
 List* list_init() {
     List list = {NULL, NULL, 0};
 

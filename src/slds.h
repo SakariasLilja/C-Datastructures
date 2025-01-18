@@ -1,15 +1,9 @@
-typedef struct Node Node;
+struct Node;
 typedef struct List List;
 
-struct Node {
-    Node *prev;
-    Node *next;
-    int value;
-};
-
 struct List {
-    Node *head;
-    Node *last;
+    struct Node *head;
+    struct Node *last;
     int size;
 };
 
