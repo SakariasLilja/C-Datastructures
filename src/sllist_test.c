@@ -28,14 +28,15 @@ void linkedListTest() {
 void linkedListPerformance() {
     List *list = list_init();
 
-    printf("Appending 10^6 elements...\n");
+    printf("Appending 10^4 elements...\n");
     clock_t ticks = clock();
 
-    for (long i = 0; i < 1000000L; i++) {
+    for (long i = 0; i < 10000; i++) {
         list_append(list, 1);
     }
 
     ticks = clock() - ticks;
-    printf("Appending elements took %f seconds.\n", ((float)ticks)/CLOCKS_PER_SEC);
+    float ms = (((float)ticks)/CLOCKS_PER_SEC) * 1000;
+    printf("Appending elements took %f ms.\n", ms);
     list_free(list);
 }
