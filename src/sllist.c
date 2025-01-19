@@ -74,6 +74,7 @@ int list_append(List *list, int value) {
     } 
     else {
         last->next = mem;
+        list_ptr->last = mem;
     }
     
     list_ptr->size++;
