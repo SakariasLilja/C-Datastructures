@@ -1,0 +1,2 @@
+void linkedListTest();
+void linkedListPerformance();
