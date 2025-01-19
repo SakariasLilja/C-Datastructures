@@ -3,40 +3,49 @@
 
 #include <stdio.h>
 #include <time.h>
+#include <stdlib.h>
 
-void linkedListTest() {
-    List *list = list_init();
+int listPerformanceTest(float*(*func)()) {
+    float *times = (*func)();
 
-    int values[] = {4, 2};
-
-    for (int i = 0; i < 2; i++) {
-        if( list_append(list, values[i]) ) {
-            printf("Successfully added %d\n", values[i]);
-        }
-        else {
-            printf("Error\n");
-        }
+    if (times == NULL) {
+        return 0;
     }
 
-    printf("\n");
+    printf("The times are: [");
 
-    list_print(list);
+    for(int i = 0; i < 4; i++) {
+        printf("%.3f ms", times[i]);
+        if (i < 3) {
+            printf(", ");
+        }
+    }
+    free(times);
+    printf("]\n");
 
-    list_free(list);
+    return 1;
 }
 
-void linkedListPerformance() {
-    List *list = list_init();
-
-    printf("Appending 10^4 elements...\n");
-    clock_t ticks = clock();
-
-    for (long i = 0; i < 10000; i++) {
-        list_append(list, 1);
+float* listAddPerformance() {
+    float *times = calloc(4, sizeof(float));
+    if (times == NULL) {
+        return NULL;
     }
 
-    ticks = clock() - ticks;
-    float ms = (((float)ticks)/CLOCKS_PER_SEC) * 1000;
-    printf("Appending elements took %f ms.\n", ms);
-    list_free(list);
+    int repetitions[] = {100, 1000, 10000, 100000};
+
+    printf("Measuring list performance...\n");
+    for(int i = 0; i < 4; i++) {
+        List *list = list_init();
+        clock_t ticks = clock();
+        for(int j = 0; j < repetitions[i]; j++) {
+            list_append(list, 1);
+        }
+        ticks = clock() - ticks;
+        times[i] = (((float)ticks)/CLOCKS_PER_SEC) * 1000.0F;
+        list_free(list);
+    }
+    printf("Done!\n");
+    
+    return times;
 }

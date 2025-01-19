@@ -1,9 +1,7 @@
-#include <stdio.h>
-
 #include "sltest.h"
 
 int main() {
-    linkedListPerformance();
+    listPerformanceTest(listAddPerformance);
     
     return 0;
 }
