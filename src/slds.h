@@ -58,13 +58,13 @@ int list_prepend(List *list, int value);
 int list_replace(List *list, int target, int value);
 
 /**
- * @brief Sorts the list in either ascending or descending order (O(n^2) complexity)
+ * @brief Sorts the list in either ascending or descending order (O(n^2) complexity - bubble sort)
  * 
  * @param list The list to sort
  * @param ascending If the list is to be sorted ascending
  * @return List* The sorted list
  */
-List* list_sort(List *list, int ascending);
+List* list_sort(List *list, unsigned char ascending);
 
 /**
  * @brief Reverses the order of the linked list
@@ -73,3 +73,13 @@ List* list_sort(List *list, int ascending);
  * @return List* The reversed list
  */
 List* list_reverse(List *list);
+
+/**
+ * @brief Adds all the elements from the array to the given list
+ * 
+ * @param list The list to be modified
+ * @param arr The array of elements
+ * @param size The number of elements to add
+ * @return int If the elements were added successfully
+ */
+int list_addAll(List *list, const int *arr, unsigned int size);
