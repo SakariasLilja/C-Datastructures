@@ -40,7 +40,7 @@ float* listAddPerformance() {
         return NULL;
     }
 
-    printf("Measuring list performance...\n");
+    printf("Measuring list append performance...\n");
     for(int i = 0; i < TEST_SIZE; i++) {
         List *list = list_init();
         clock_t ticks = clock();
@@ -57,11 +57,28 @@ float* listAddPerformance() {
 }
 
 float* listSortPerformance() {
+    warmup();
     float *times = calloc(TEST_SIZE, sizeof(float));
 
     if(times == NULL) {
         return NULL;
     }
+
+    srand(0);
+    
+    printf("Measuring list sort performance...\n");
+    for(int i = 0; i < TEST_SIZE; i++) {
+        List *list = list_init();
+        for(unsigned int j = 0; j < ARR[i]; j++) {
+            list_append(list, rand());
+        }
+        clock_t ticks = clock();
+        list_sort(list, 1);
+        ticks = clock() - ticks;
+        times[i] = (((float)ticks)/CLOCKS_PER_SEC) * 1000.0F;
+        list_free(list);
+    }
+    printf("Done!\n");
 
     return times;
 }
