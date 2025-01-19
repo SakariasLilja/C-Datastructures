@@ -19,3 +19,10 @@ int listPerformanceTest(float*(*func)());
  * @return float* An array of times in ms with size 10
  */
 float* listSortPerformance();
+
+/**
+ * @brief Measures the performance of the list's reverse method
+ * 
+ * @return float* An array of times in ms with size 10
+ */
+float* listReversePerformance();

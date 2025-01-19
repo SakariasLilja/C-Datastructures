@@ -1,7 +1,7 @@
 #include "sltest.h"
 
 int main() {
-    listPerformanceTest(listSortPerformance);
+    listPerformanceTest(listReversePerformance);
     
     return 0;
 }
