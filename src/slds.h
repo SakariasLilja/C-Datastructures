@@ -83,3 +83,47 @@ List* list_reverse(List *list);
  * @return int If the elements were added successfully
  */
 int list_addAll(List *list, const int *arr, unsigned int size);
+
+/**
+ * @brief Returns the value at index i. If i > size the returned value is 0.
+ * 
+ * @param list The list to be read from
+ * @param i The index of the wanted element
+ * @return int The value of the node at index i
+ */
+int list_ival(List *list, unsigned int i);
+
+/**
+ * @brief Removes the head element of the list. Returns 0 if list is empty.
+ * 
+ * @param list The list to be modified
+ * @return int The value stored in the head node
+ */
+int list_rmh(List *list);
+
+/**
+ * @brief Removes the last element of the list. Returns 0 if list is empty.
+ * 
+ * @param list The list to be modified
+ * @return int The value stored in the last node
+ */
+int list_rml(List *list);
+
+/**
+ * @brief Removes the element of the list at index i. If i > size the returned value is 0.
+ * 
+ * @param list The list to be modified
+ * @param i The index of the element to remove
+ * @return int The value stored at i
+ */
+int list_rmi(List *list, unsigned int i);
+
+/**
+ * @brief Inserts the value into the list at index i, i.e. the index of the inserted value will be i.
+ * 
+ * @param list The list to modify
+ * @param value The value to be inserted
+ * @param i The index of the value
+ * @return int If the value was inserted successfully
+ */
+int list_insert(List *list, int value, unsigned int i);

@@ -186,3 +186,154 @@ int list_addAll(List *list, const int *arr, unsigned int size) {
 
     return 1;
 }
+
+int list_ival(List *list, unsigned int i) {
+    unsigned int size = list->size;
+    if (i >= size) {
+        return 0;
+    }
+
+    unsigned int index = 0;
+    Node *current = list->head;
+    while(index < i) {
+        current = current->next;
+        index++;
+    }
+
+    int value = current->value;
+    return value;
+}
+
+int list_rmh(List *list) {
+    List *l = list;
+    Node *head = list->head;
+    // List is empty
+    if(head == NULL) {
+        return 0;
+    }
+
+    int headVal = head->value;
+    Node *nHead = head->next;
+
+    nHead->prev = NULL; // Remove reference to head
+    l->head = nHead; // Set new head
+    if (l->last == head) {
+        l->last = nHead; // If list is size 1 remove reference to head
+    }
+    free(head); // Free memory of head
+    l->size--; // Decrease size of list
+
+    return headVal;
+}
+
+int list_rml(List *list) {
+    List *l = list;
+    Node *last = list->last;
+    // List is empty
+    if(last == NULL) {
+        return 0;
+    }
+
+    int lastVal = last->value;
+    Node *nLast = last->prev;
+
+    nLast->next = NULL; // Remove reference to last
+    l->last = nLast; // Set new last
+    if (l->head == last) {
+        l->head = nLast; // If list is size 1 remove reference to last
+    }
+    free(last); // Free memory of last
+    l->size--; // Decrease size of list
+
+    return lastVal;
+}
+
+int list_rmi(List *list, unsigned int i) {
+    List *l = list;
+    Node *current = list->head;
+    if (current == NULL) {
+        return 0;
+    }
+
+    unsigned int size = list->size;
+    if(i >= size) {
+        return 0;
+    }
+
+    if(i == 0) {
+        return list_rmh(list);
+    }
+
+    if(i == size - 1) {
+        return list_rml(list);
+    }
+
+
+    unsigned int index = 0;
+    while(index < i) {
+        current = current->next;
+        index++;
+    }
+
+    Node *prev = current->prev;
+    Node *next = current->next;
+    int value = current->value;
+
+    prev->next = next;
+    next->prev = prev;
+    l->size--;
+    free(current);
+
+    return value;
+}
+
+int list_insert(List *list, int value, unsigned int i) {
+    List *l = list;
+    Node *current = list->head;
+    if (current == NULL) {
+        return 0;
+    }
+
+    unsigned int size = l->size;
+    if(i >= size) {
+        return 0; // Index out of bounds
+    }
+
+    // Check if prepend or append could work
+    if(i == 0) {
+        return list_prepend(list, value);
+    }
+
+    if(i == size - 1) {
+        return list_append(list, value);
+    }
+
+    // ALlocate memory for the new node
+    Node *mem = malloc(sizeof(Node));
+    if (mem == NULL) {
+        return 0;
+    }
+    
+    // Set memory of node
+    Node n = {NULL, NULL, value};
+    void *src = (void*) &n;
+    memcpy(mem, src, sizeof(Node));
+
+    // Loop through to index
+    unsigned int index = 0;
+    while(index < i) {
+        current = current->next;
+        index++;
+    }
+
+    // Assign references
+    Node *prev = current->prev;
+    mem->prev = prev;
+    mem->next = current;
+    prev->next = mem;
+    current->prev = mem;
+
+    l->size++;
+
+    return 1;
+}
