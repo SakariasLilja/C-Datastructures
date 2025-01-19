@@ -4,7 +4,7 @@ typedef struct List List;
 struct List {
     struct Node *head;
     struct Node *last;
-    int size;
+    unsigned int size;
 };
 
 /**
@@ -37,3 +37,39 @@ int list_append(List *list, int value);
  * @param list The list whose contents to print
  */
 void list_print(List *list);
+
+/**
+ * @brief Adds a value to the start of the list
+ * 
+ * @param list The list to modify
+ * @param value The value to be added
+ * @return int If the add was successful
+ */
+int list_prepend(List *list, int value);
+
+/**
+ * @brief Replaces the first instance of target with value
+ * 
+ * @param list The list to modify
+ * @param target The target value
+ * @param value The new value of target
+ * @return int If the target was found and successfully replaced
+ */
+int list_replace(List *list, int target, int value);
+
+/**
+ * @brief Sorts the list in either ascending or descending order (O(n^2) complexity)
+ * 
+ * @param list The list to sort
+ * @param ascending If the list is to be sorted ascending
+ * @return List* The sorted list
+ */
+List* list_sort(List *list, int ascending);
+
+/**
+ * @brief Reverses the order of the linked list
+ * 
+ * @param list List to reverse
+ * @return List* The reversed list
+ */
+List* list_reverse(List *list);
