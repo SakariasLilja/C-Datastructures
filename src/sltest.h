@@ -1,7 +1,7 @@
 /**
  * @brief Measures the performance of the list's append method
  * 
- * @return float* An array of times for appends of size: [100, 1000, 10000, 100000]
+ * @return float* An array of times in ms with size 10
  */
 float* listAddPerformance();
 
@@ -12,3 +12,10 @@ float* listAddPerformance();
  * @return int If the test was successfully run
  */
 int listPerformanceTest(float*(*func)());
+
+/**
+ * @brief Measures the performance of the list's sort method
+ * 
+ * @return float* An array of times in ms with size 10
+ */
+float* listSortPerformance();
