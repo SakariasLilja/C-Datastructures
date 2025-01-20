@@ -13,6 +13,16 @@ void warmup() {
     list_free(list);
 }
 
+int sortAscending(const void *value1, const void *value2) {
+    const int *v1 = value1;
+    const int *v2 = value2;
+    if(*v1 > *v2) {
+        return 1;
+    }
+
+    return 0;
+}
+
 int listPerformanceTest(float*(*func)()) {
     warmup();
     float *times = (*func)();
@@ -70,7 +80,7 @@ float* listSortPerformance() {
             list_append(list, rand());
         }
         clock_t ticks = clock();
-        list_sort(list, 1);
+        list_sort(list, sortAscending);
         ticks = clock() - ticks;
         times[i] = (((float)ticks)/CLOCKS_PER_SEC) * 1000.0F;
         list_free(list);

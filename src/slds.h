@@ -87,13 +87,13 @@ int list_prepend(List *list, int value);
 int list_replace(List *list, int target, int value);
 
 /**
- * @brief Sorts the list in either ascending or descending order (O(n^2) complexity - bubble sort)
+ * @brief Sorts the list with a with a given comparison function. Uses bubble sort ~ O(n^2).
  * 
  * @param list The list to sort
- * @param ascending If the list is to be sorted ascending
+ * @param compar The comparison method
  * @return List* The sorted list
  */
-List* list_sort(List *list, unsigned char ascending);
+List* list_sort(List *list, int(*compar)(const void*, const void*));
 
 /**
  * @brief Reverses the order of the linked list

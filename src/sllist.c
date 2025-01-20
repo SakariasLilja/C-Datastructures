@@ -136,8 +136,7 @@ List* list_reverse(List *list) {
     return list_ptr;
 }
 
-List* list_sort(List *list, unsigned char ascending) {
-    int mask = ascending ? 1 : -1; // Flipping value for difference check between values
+List* list_sort(List *list, int(*compar)(const void*, const void*)) {
     // Initialize pointers
     List *l = list;
     Node *current;
@@ -155,7 +154,7 @@ List* list_sort(List *list, unsigned char ascending) {
             int nextVal = next->value;
 
             // Check differences
-            if (currVal * mask > nextVal * mask) {
+            if (compar((void*) &currVal, (void*) &nextVal) > 0) {
                 // Perform swap
                 swapped = 1;
                 current->value = nextVal;
