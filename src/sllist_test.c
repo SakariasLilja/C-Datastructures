@@ -50,10 +50,11 @@ float* listAddPerformance() {
     printf("Measuring list append performance...\n");
     for(int i = 0; i < TEST_SIZE; i++) {
         List *list = list_init();
-        clock_t ticks = clock();
         for(unsigned int j = 0; j < ARR[i]; j++) {
             list_append(list, 0);
         }
+        clock_t ticks = clock();
+        list_append(list, 1);
         ticks = clock() - ticks;
         times[i] = (((float)ticks)/CLOCKS_PER_SEC) * 1000.0F;
         list_free(list);
