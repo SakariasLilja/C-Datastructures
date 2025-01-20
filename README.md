@@ -4,6 +4,7 @@
 ### Contents:
 1. Description
 1. Doubly Linked Lists
+1. Dynamic Arrays
 
 ## 1. Description
 This program was made with the sole purpose to practice the declaration of the most common data structures present in programming. 
@@ -24,3 +25,15 @@ The implemented version of linked lists are the doubly linked ones, as these pro
 * Sort (bubble sort): O(n^2)
 * Remove first/last: O(1)
 * Remove at index i: O(n)
+
+## 3. Dynamic Arrays
+Dynamic arrays allow for constant-time random access to elements, while being dynamically resized. The implemented version has a growth factor of 1.5, making resizing at larger array-sizes not waste as much memory as compared to a dynamic array with a growth factor of 2. The implemented dynamic arrays do not down-size, as large deletions rarely occur when using arrays.
+
+## Performance characteristics:
+* Searching: O(n)
+* Random Access: O(1)
+* Appending: Amortized O(1)
+* Inserting: Amortized O(n)
+* Sort (quicksort): Average O(n*log(n)); Worst-Case O(n^2)
+* Remove last: O(1)
+* Remove elsewhere: O(n)
