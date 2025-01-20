@@ -34,14 +34,14 @@ void dynarr_free(DynArr *arr) {
 void dynarr_print(DynArr *arr) {
     unsigned int size = arr->size;
     int *values = arr->values;
-    printf("(");
+    printf("[");
     for(unsigned int i = 0; i < size; i++) {
         printf("%d", values[i]);
         if(i < size - 1) {
             printf(", ");
         }
     }
-    printf(")\n");
+    printf("]\n");
 }
 
 /**
@@ -119,7 +119,6 @@ DynArr* dynarr_insert(DynArr *arr, int value, unsigned int index) {
     }
 
     DynArr *a = arr;
-    unsigned int size = arr->size;
     int *values = arr->values;
 
     unsigned int i;
