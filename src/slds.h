@@ -1,5 +1,14 @@
-struct Node;
+#ifndef DS_H
+#define DS_H
+
+typedef struct Node Node;
 typedef struct List List;
+
+struct Node {
+    struct Node *prev;
+    struct Node *next;
+    int value;
+};
 
 struct List {
     struct Node *head;
@@ -127,3 +136,5 @@ int list_rmi(List *list, unsigned int i);
  * @return int If the value was inserted successfully
  */
 int list_insert(List *list, int value, unsigned int i);
+
+#endif

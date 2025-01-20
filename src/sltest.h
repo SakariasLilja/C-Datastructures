@@ -1,3 +1,6 @@
+#ifndef TEST_H
+#define TEST_H
+
 extern const int TEST_SIZE;
 extern const unsigned int ARR[];
 
@@ -29,3 +32,5 @@ float* listSortPerformance();
  * @return float* An array of times in ms with size 10
  */
 float* listReversePerformance();
+
+#endif
