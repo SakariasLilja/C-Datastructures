@@ -14,7 +14,7 @@ typedef struct List List;
 
 /**
  * @brief A dynamically resized indexed array of integers.
- * Has a resize-threshold of 1.5.
+ * Has a growth-factor of 1.5.
  */
 typedef struct DynArr DynArr;
 
@@ -31,8 +31,8 @@ struct List {
 };
 
 struct DynArr {
-    unsigned int size;
     int *values;
+    unsigned int size;
     unsigned int capacity;
 };
 
@@ -158,7 +158,7 @@ int list_rmi(List *list, unsigned int i);
 int list_insert(List *list, int value, unsigned int i);
 
 /**
- * @brief Initialises a dynamic array for use w/ load threshold 1.5
+ * @brief Initialises a dynamic array for use
  * 
  * @return DynArr* Address of the dynamic array
  */
@@ -244,5 +244,12 @@ DynArr* dynarr_clear(DynArr *arr);
  * @return int The value stored at the index. Returns -1 if size was out of bounds.
  */
 int dynarr_remove(DynArr *arr, unsigned int index);
+
+/**
+ * @brief Prints the contents of the dynamic array to the standard output
+ * 
+ * @param arr The array to print
+ */
+void dynarr_print(DynArr *arr);
 
 #endif
