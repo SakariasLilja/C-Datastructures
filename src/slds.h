@@ -215,7 +215,7 @@ int dynarr_get(DynArr *arr, unsigned int index);
  * @param arr The array to modify
  * @param value The value to insert
  * @param index The index to replace
- * @return int If the replace was successful
+ * @return int The previous value at the index
  */
 int dynarr_replace(DynArr *arr, int value, unsigned int index);
 
@@ -227,14 +227,6 @@ int dynarr_replace(DynArr *arr, int value, unsigned int index);
  * @return unsigned int The index of the found element. Returns size if the value wasn't found.
  */
 unsigned int dynarr_indexof(DynArr *arr, int value);
-
-/**
- * @brief Clears the values of a dynamic array
- * 
- * @param arr The array to clear
- * @return DynArr* The cleared array
- */
-DynArr* dynarr_clear(DynArr *arr);
 
 /**
  * @brief Removes an element from a dynamic array at a given index
