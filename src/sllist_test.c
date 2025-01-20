@@ -7,7 +7,7 @@
 
 void warmup() {
     List *list = list_init();
-    for(unsigned int i = 0; i < ARR[TEST_SIZE - 1]; i++) {
+    for(unsigned int i = 0; i < ARR[TEST_SIZE - 1] * 10; i++) {
         list_append(list, 0);
     }
     list_free(list);
