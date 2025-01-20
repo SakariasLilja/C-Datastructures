@@ -5,6 +5,11 @@ extern const int TEST_SIZE;
 extern const unsigned int ARR[];
 
 /**
+ * @brief Prepares the system to measure data correctly
+ */
+void warmup();
+
+/**
  * @brief Measures the performance of the list's append method
  * 
  * @return float* An array of times in ms
