@@ -1,3 +1,6 @@
+extern const int TEST_SIZE;
+extern const unsigned int ARR[];
+
 /**
  * @brief Measures the performance of the list's append method
  * 
