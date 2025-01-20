@@ -1,8 +1,22 @@
 #ifndef DS_H
 #define DS_H
 
+/**
+ * @brief Node element for doubly linked lists.
+ */
 typedef struct Node Node;
+
+/**
+ * @brief Doubly linked list with constant time size determination
+ * and constant time access to first and last elements.
+ */
 typedef struct List List;
+
+/**
+ * @brief A dynamically resized indexed array of integers.
+ * Has a resize-threshold of 1.5.
+ */
+typedef struct DynArr DynArr;
 
 struct Node {
     struct Node *prev;
@@ -14,6 +28,12 @@ struct List {
     struct Node *head;
     struct Node *last;
     unsigned int size;
+};
+
+struct DynArr {
+    unsigned int size;
+    int *values;
+    unsigned int capacity;
 };
 
 /**
@@ -136,5 +156,93 @@ int list_rmi(List *list, unsigned int i);
  * @return int If the value was inserted successfully
  */
 int list_insert(List *list, int value, unsigned int i);
+
+/**
+ * @brief Initialises a dynamic array for use w/ load threshold 1.5
+ * 
+ * @return DynArr* Address of the dynamic array
+ */
+DynArr* dynarr_init();
+
+/**
+ * @brief Frees the dynamic array from the memory
+ * 
+ * @param arr The array to free
+ */
+void dynarr_free(DynArr *arr);
+
+/**
+ * @brief Adds a value to the dynamic array
+ * 
+ * @param arr The dynamic array to modify
+ * @param value The value to add
+ * @return DynArr* The dynamic array
+ */
+DynArr* dynarr_add(DynArr *arr, int value);
+
+/**
+ * @brief Adds all the values from src to arr
+ * 
+ * @param arr The dynamic array to modify
+ * @param src The source array of integers
+ * @param size The size of the source array
+ * @return DynArr* The dynamic array
+ */
+DynArr* dynarr_addAll(DynArr *arr, const int *src, unsigned int size);
+
+/**
+ * @brief Inserts a value into the dynamic array at an index
+ * 
+ * @param arr The dynamic array to modify
+ * @param value The value to insert
+ * @param index The index to insert the value into
+ * @return DynArr* The dynamic array
+ */
+DynArr* dynarr_insert(DynArr *arr, int value, unsigned int index);
+
+/**
+ * @brief Gets the value at the index of the dynamic array
+ * 
+ * @param arr The dynamic array to search
+ * @param index The index to read
+ * @return int The value stored at the index
+ */
+int dynarr_get(DynArr *arr, unsigned int index);
+
+/**
+ * @brief Replaces a value at the index of the dynamic array
+ * 
+ * @param arr The array to modify
+ * @param value The value to insert
+ * @param index The index to replace
+ * @return int If the replace was successful
+ */
+int dynarr_replace(DynArr *arr, int value, unsigned int index);
+
+/**
+ * @brief Gets the index of the first occurrence of a value in a dynamic array
+ * 
+ * @param arr The array to search
+ * @param value The value to search for
+ * @return unsigned int The index of the found element. Returns size if the value wasn't found.
+ */
+unsigned int dynarr_indexof(DynArr *arr, int value);
+
+/**
+ * @brief Clears the values of a dynamic array
+ * 
+ * @param arr The array to clear
+ * @return DynArr* The cleared array
+ */
+DynArr* dynarr_clear(DynArr *arr);
+
+/**
+ * @brief Removes an element from a dynamic array at a given index
+ * 
+ * @param arr The array to modify
+ * @param index The index to remove
+ * @return int The value stored at the index. Returns -1 if size was out of bounds.
+ */
+int dynarr_remove(DynArr *arr, unsigned int index);
 
 #endif
