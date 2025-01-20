@@ -23,7 +23,7 @@ int sortAscending(const void *value1, const void *value2) {
     return 0;
 }
 
-int listPerformanceTest(float*(*func)()) {
+int performanceTest(float*(*func)()) {
     warmup();
     float *times = (*func)();
 

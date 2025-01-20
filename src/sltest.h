@@ -17,7 +17,7 @@ float* listAddPerformance();
  * @param func Performance function to test
  * @return int If the test was successfully run
  */
-int listPerformanceTest(float*(*func)());
+int performanceTest(float*(*func)());
 
 /**
  * @brief Measures the performance of the list's sort method
