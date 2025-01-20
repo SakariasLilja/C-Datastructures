@@ -120,7 +120,7 @@ int list_addAll(List *list, const int *arr, unsigned int size);
  * @param i The index of the wanted element
  * @return int The value of the node at index i
  */
-int list_ival(List *list, unsigned int i);
+int list_get(List *list, unsigned int i);
 
 /**
  * @brief Removes the head element of the list. Returns 0 if list is empty.

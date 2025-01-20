@@ -180,7 +180,7 @@ int list_addAll(List *list, const int *arr, unsigned int size) {
     return 1;
 }
 
-int list_ival(List *list, unsigned int i) {
+int list_get(List *list, unsigned int i) {
     unsigned int size = list->size;
     if (i >= size) {
         return 0;
