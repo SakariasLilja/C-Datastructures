@@ -184,3 +184,11 @@ int dynarr_remove(DynArr *arr, unsigned int index) {
 
     return out;
 }
+
+DynArr* dynarr_qsort(DynArr *arr, int(*compar)(const void*, const void*)) {
+    unsigned int size = arr->size;
+    int *values = arr->values;
+    qsort(values, size, sizeof(int), compar);
+
+    return arr;
+}

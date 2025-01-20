@@ -244,4 +244,13 @@ int dynarr_remove(DynArr *arr, unsigned int index);
  */
 void dynarr_print(DynArr *arr);
 
+/**
+ * @brief Sorts the array using the in-built quicksort algorithm
+ * 
+ * @param arr The array to sort
+ * @param compar The comparison function
+ * @return DynArr* The sorted array
+ */
+DynArr* dynarr_qsort(DynArr *arr, int(*compar)(const void*, const void*));
+
 #endif
