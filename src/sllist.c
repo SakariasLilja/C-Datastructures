@@ -355,3 +355,60 @@ int* list_getIf(List *list, int value) {
 
     return NULL;
 }
+
+List* list_concat(List *dest, List *src) {
+    if(src->head == NULL) {
+        return dest;
+    }
+
+    if(dest->head == NULL) {
+        dest->head = src->head;
+        dest->last = src->last;
+        src->head = NULL;
+        src->last = NULL;
+        return dest;
+    }
+
+    Node *mid1 = dest->last;
+    Node *mid2 = src->head;
+    mid1->right = mid2;
+    mid2->left = mid1;
+    dest->last = src->last;
+    src->head = NULL;
+    src->last = NULL;
+    return dest;
+}
+
+int list_removeIf(List *list, int value) {
+    Node *current = list->last;
+    if(current == NULL) {
+        return 0;
+    }
+
+    if(value == current->value) {
+        list_rml(list);
+        return 1;
+    }
+
+    current = list->head;
+    if(value == current->value) {
+        list_rmh(list);
+        return 1;
+    }
+
+    current = current->right;
+    while(current != NULL) {
+        if(value == current->value) {
+            Node *prev = current->left;
+            Node *next = current->right;
+            prev->right = next;
+            next->left = prev;
+            list->size--;
+            free(current);
+            return 1;
+        }
+        current = current->right;
+    }
+
+    return 0;
+}

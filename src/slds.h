@@ -20,7 +20,9 @@ typedef struct DynArr DynArr;
 
 /**
  * @brief A hash set with separate chaining for collisions.
- * Has a load factor resizing of 1.
+ * Has a load factor resizing of 1, and an initial capacity of 16.
+ * Downsizes the the load factor reached 0.25.
+ * Resizes by a factor of 2.
  */
 typedef struct Set Set;
 
@@ -43,7 +45,7 @@ struct DynArr {
 };
 
 struct Set {
-    List **values;
+    List **lists;
     unsigned int entries;
     unsigned int buckets;
 };
@@ -186,6 +188,24 @@ int list_contains(List *list, int value);
  * @return int* Pointer to the value if found
  */
 int* list_getIf(List *list, int value);
+
+/**
+ * @brief Concatenates src to dest and removes src's references to values
+ * 
+ * @param dst The destination list
+ * @param src The source list
+ * @return List* The concatenated list
+ */
+List* list_concat(List *dest, List *src);
+
+/**
+ * @brief Removes the first instance of this value from this list
+ * 
+ * @param list The list to modify
+ * @param value The value to remove
+ * @return int If the value was removed
+ */
+int list_removeIf(List *list, int value);
 
 /**
  * @brief Initialises a dynamic array for use
@@ -335,7 +355,7 @@ int set_add(Set *set, int value);
  * 
  * @param set The hash set to search
  * @param value The value to search for
- * @return int If the value is contained
+ * @return int If the value was found
  */
 int set_contains(Set *set, int value);
 
