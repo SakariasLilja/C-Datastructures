@@ -300,4 +300,52 @@ DynArr* dynarr_reverse(DynArr *arr);
  */
 int dynarr_contains(DynArr *arr, int value);
 
+/**
+ * @brief Initializes a hash set for use
+ * 
+ * @return Set* The initialized hash set
+ */
+Set* set_init();
+
+/**
+ * @brief Frees the hash set from memory
+ * 
+ * @param set The hash set to free
+ */
+void set_free(Set *set);
+
+/**
+ * @brief Prints the hash set contents to the standard output
+ * 
+ * @param set The hash set to print
+ */
+void set_print(Set *set);
+
+/**
+ * @brief Tries to add a value to the hash set
+ * 
+ * @param set The hash set to modify
+ * @param value The value to add
+ * @return int If the value was added successfully
+ */
+int set_add(Set *set, int value);
+
+/**
+ * @brief Checks if the hash set contains a value
+ * 
+ * @param set The hash set to search
+ * @param value The value to search for
+ * @return int If the value is contained
+ */
+int set_contains(Set *set, int value);
+
+/**
+ * @brief Removes an element from the hash set if it is contained
+ * 
+ * @param set The hash set to modify
+ * @param value The value to remove
+ * @return int If the value was deleted
+ */
+int set_remove(Set *set, int value);
+
 #endif
