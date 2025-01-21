@@ -60,6 +60,13 @@ float* listGetPerformance();
 float* listSearchPerformance();
 
 /**
+ * @brief Measures the performance of the list's remove method
+ * 
+ * @return float* An array of times in ms
+ */
+float* listRemovePerformance();
+
+/**
  * @brief Measures the performance of the dynamic array's add method
  * 
  * @return float* An array of times in ms
@@ -100,5 +107,12 @@ float* dynarrGetPerformance();
  * @return float* An array of times in ms
  */
 float* dynarrSearchPerformance();
+
+/**
+ * @brief Measures the performance of the dynamic array's remove method
+ * 
+ * @return float* An array of times in ms
+ */
+float* dynarrRemovePerformance();
 
 #endif
