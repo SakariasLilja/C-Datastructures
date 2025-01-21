@@ -19,8 +19,8 @@ typedef struct List List;
 typedef struct DynArr DynArr;
 
 struct Node {
-    struct Node *prev;
-    struct Node *next;
+    struct Node *left;
+    struct Node *right;
     int value;
 };
 

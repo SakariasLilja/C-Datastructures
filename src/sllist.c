@@ -23,7 +23,7 @@ void list_free(List *list) {
 
     // Free the nodes of list
     while(current != NULL) {
-        Node *next = current->next;
+        Node *next = current->right;
         free(current);
         current = next;
     }
@@ -39,7 +39,7 @@ void list_print(List *list) {
     while(current != NULL) {
         int val = current->value;
         printf("%d", val);
-        current = current->next;
+        current = current->right;
         if (current != NULL) {
             printf(", ");
         }
@@ -66,7 +66,7 @@ int list_append(List *list, int value) {
         list_ptr->head = mem;
     } 
     else {
-        last->next = mem;
+        last->right = mem;
     }
     
     list_ptr->last = mem;
@@ -92,7 +92,7 @@ int list_prepend(List *list, int value) {
         list_ptr->last = mem;
     }
     else {
-        head->prev = mem;
+        head->left = mem;
     }
 
     list_ptr->head = mem;
@@ -108,7 +108,7 @@ int list_replace(List *list, int target, int value) {
             current->value = value;
             return 1;
         }
-        current = current->next;
+        current = current->right;
     }
 
     return 0;
@@ -119,11 +119,11 @@ List* list_reverse(List *list) {
     Node *current = list->head;
 
     while(current != NULL) {
-        Node *next = current->next;
+        Node *next = current->right;
         
         // Swap references around
-        current->next = current->prev;
-        current->prev = next;
+        current->right = current->left;
+        current->left = next;
 
         current = next;
     }
@@ -147,7 +147,7 @@ List* list_sort(List *list, int(*compar)(const void*, const void*)) {
         swapped = 0;
         // Assign starting values
         current = l->head;
-        next = current->next;
+        next = current->right;
         // Loop through list
         while (next != NULL) {
             int currVal = current->value;
@@ -161,7 +161,7 @@ List* list_sort(List *list, int(*compar)(const void*, const void*)) {
                 next->value = currVal;
             }
             current = next;
-            next = next->next;
+            next = next->right;
         }
     } while (swapped); // No values were swapped during run --> sorted
 
@@ -189,7 +189,7 @@ int list_get(List *list, unsigned int i) {
     unsigned int index = 0;
     Node *current = list->head;
     while(index < i) {
-        current = current->next;
+        current = current->right;
         index++;
     }
 
@@ -206,9 +206,9 @@ int list_rmh(List *list) {
     }
 
     int headVal = head->value;
-    Node *nHead = head->next;
+    Node *nHead = head->right;
 
-    nHead->prev = NULL; // Remove reference to head
+    nHead->left = NULL; // Remove reference to head
     l->head = nHead; // Set new head
     if (l->last == head) {
         l->last = nHead; // If list is size 1 remove reference to head
@@ -228,9 +228,9 @@ int list_rml(List *list) {
     }
 
     int lastVal = last->value;
-    Node *nLast = last->prev;
+    Node *nLast = last->left;
 
-    nLast->next = NULL; // Remove reference to last
+    nLast->right = NULL; // Remove reference to last
     l->last = nLast; // Set new last
     if (l->head == last) {
         l->head = nLast; // If list is size 1 remove reference to last
@@ -264,16 +264,16 @@ int list_rmi(List *list, unsigned int i) {
 
     unsigned int index = 0;
     while(index < i) {
-        current = current->next;
+        current = current->right;
         index++;
     }
 
-    Node *prev = current->prev;
-    Node *next = current->next;
+    Node *prev = current->left;
+    Node *next = current->right;
     int value = current->value;
 
-    prev->next = next;
-    next->prev = prev;
+    prev->right = next;
+    next->left = prev;
     l->size--;
     free(current);
 
@@ -315,16 +315,16 @@ int list_insert(List *list, int value, unsigned int i) {
     // Loop through to index
     unsigned int index = 0;
     while(index < i) {
-        current = current->next;
+        current = current->right;
         index++;
     }
 
     // Assign references
-    Node *prev = current->prev;
-    mem->prev = prev;
-    mem->next = current;
-    prev->next = mem;
-    current->prev = mem;
+    Node *prev = current->left;
+    mem->left = prev;
+    mem->right = current;
+    prev->right = mem;
+    current->left = mem;
 
     l->size++;
 
@@ -337,7 +337,7 @@ int list_contains(List *list, int value) {
         if(value == current->value) {
             return 1;
         }
-        current = current->next;
+        current = current->right;
     }
 
     return 0;
