@@ -330,3 +330,15 @@ int list_insert(List *list, int value, unsigned int i) {
 
     return 1;
 }
+
+int list_contains(List *list, int value) {
+    Node *current = list->head;
+    while(current != NULL) {
+        if(value == current->value) {
+            return 1;
+        }
+        current = current->next;
+    }
+
+    return 0;
+}

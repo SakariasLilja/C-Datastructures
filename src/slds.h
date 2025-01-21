@@ -158,6 +158,15 @@ int list_rmi(List *list, unsigned int i);
 int list_insert(List *list, int value, unsigned int i);
 
 /**
+ * @brief Searches the list for the specified value
+ * 
+ * @param list The list to search
+ * @param value The value to search for
+ * @return int If the value was found
+ */
+int list_contains(List *list, int value);
+
+/**
  * @brief Initialises a dynamic array for use
  * 
  * @return DynArr* Address of the dynamic array
@@ -260,5 +269,14 @@ DynArr* dynarr_qsort(DynArr *arr, int(*compar)(const void*, const void*));
  * @return DynArr* The reversed dynamic array
  */
 DynArr* dynarr_reverse(DynArr *arr);
+
+/**
+ * @brief Determines whether the dynamic array contains a given value
+ * 
+ * @param arr The dynamic array to search
+ * @param value The value to look for
+ * @return int If the value was found
+ */
+int dynarr_contains(DynArr *arr, int value);
 
 #endif

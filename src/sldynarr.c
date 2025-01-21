@@ -208,3 +208,17 @@ DynArr* dynarr_reverse(DynArr *arr) {
 
     return arr;
 }
+
+int dynarr_contains(DynArr *arr, int value) {
+    int *values = arr->values;
+    unsigned int size = arr->size;
+    unsigned int i = 0;
+    while(i < size) {
+        if(values[i] == value) {
+            return 1;
+        }
+        i++;
+    }
+
+    return 0;
+}
