@@ -18,6 +18,12 @@ typedef struct List List;
  */
 typedef struct DynArr DynArr;
 
+/**
+ * @brief A hash set with separate chaining for collisions.
+ * Has a load factor resizing of 1.
+ */
+typedef struct Set Set;
+
 struct Node {
     struct Node *left;
     struct Node *right;
@@ -34,6 +40,12 @@ struct DynArr {
     int *values;
     unsigned int size;
     unsigned int capacity;
+};
+
+struct Set {
+    List **values;
+    unsigned int entries;
+    unsigned int buckets;
 };
 
 /**
@@ -165,6 +177,15 @@ int list_insert(List *list, int value, unsigned int i);
  * @return int If the value was found
  */
 int list_contains(List *list, int value);
+
+/**
+ * @brief Searches the list for the value and returns it
+ * 
+ * @param list The list for search
+ * @param value The value to search for
+ * @return int* Pointer to the value if found
+ */
+int* list_getIf(List *list, int value);
 
 /**
  * @brief Initialises a dynamic array for use

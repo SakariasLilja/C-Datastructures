@@ -342,3 +342,16 @@ int list_contains(List *list, int value) {
 
     return 0;
 }
+
+int* list_getIf(List *list, int value) {
+    Node *current = list->head;
+    while(current != NULL) {
+        int *currentValue = &current->value;
+        if(value == *currentValue) {
+            return currentValue;
+        }
+        current = current->right;
+    }
+
+    return NULL;
+}
