@@ -156,7 +156,7 @@ float* dynarrSearchPerformance() {
         return NULL;
     }
 
-    printf("Measuring dynamic array get performance...\n");
+    printf("Measuring dynamic array search performance...\n");
     for(int i = 0; i < TEST_SIZE; i++) {
         DynArr *arr = dynarr_init();
         for(unsigned int j = 0; j < ARR[i]; j++) {
@@ -181,7 +181,7 @@ float* dynarrRemovePerformance() {
         return NULL;
     }
 
-    printf("Measuring dynamic array get performance...\n");
+    printf("Measuring dynamic array remove performance...\n");
     for(int i = 0; i < TEST_SIZE; i++) {
         DynArr *arr = dynarr_init();
         for(unsigned int j = 0; j < ARR[i]; j++) {

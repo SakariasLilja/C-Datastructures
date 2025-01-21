@@ -174,7 +174,7 @@ float* listSearchPerformance() {
         return NULL;
     }
 
-    printf("Measuring list get performance...\n");
+    printf("Measuring list search performance...\n");
     for(int i = 0; i < TEST_SIZE; i++) {
         List *list = list_init();
         for(unsigned int j = 0; j < ARR[i]; j++) {
@@ -199,7 +199,7 @@ float* listRemovePerformance() {
         return NULL;
     }
 
-    printf("Measuring list get performance...\n");
+    printf("Measuring list remove performance...\n");
     for(int i = 0; i < TEST_SIZE; i++) {
         List *list = list_init();
         for(unsigned int j = 0; j < ARR[i]; j++) {
