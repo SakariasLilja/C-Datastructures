@@ -198,45 +198,55 @@ int list_get(List *list, unsigned int i) {
 }
 
 int list_rmh(List *list) {
-    List *l = list;
     Node *head = list->head;
+
     // List is empty
     if(head == NULL) {
         return 0;
     }
 
     int headVal = head->value;
-    Node *nHead = head->right;
 
-    nHead->left = NULL; // Remove reference to head
-    l->head = nHead; // Set new head
-    if (l->last == head) {
-        l->last = nHead; // If list is size 1 remove reference to head
+    // List is size 1
+    if(head == list->last) {
+        list->head = NULL;
+        list->last = NULL;
     }
+    else {
+        Node *nHead = head->right;
+        nHead->left = NULL; // Remove reference to head
+        list->head = nHead; // Set new head
+    }
+
     free(head); // Free memory of head
-    l->size--; // Decrease size of list
+    list->size--; // Decrease size of list
 
     return headVal;
 }
 
 int list_rml(List *list) {
-    List *l = list;
     Node *last = list->last;
+
     // List is empty
     if(last == NULL) {
         return 0;
     }
 
     int lastVal = last->value;
-    Node *nLast = last->left;
 
-    nLast->right = NULL; // Remove reference to last
-    l->last = nLast; // Set new last
-    if (l->head == last) {
-        l->head = nLast; // If list is size 1 remove reference to last
+    // List is size 1
+    if(last == list->head) {
+        list->head = NULL;
+        list->last = NULL;
     }
+    else {
+        Node *newLast = last->left;
+        newLast->right = NULL;
+        list->last = newLast;
+    }
+
     free(last); // Free memory of last
-    l->size--; // Decrease size of list
+    list->size--; // Decrease size of list
 
     return lastVal;
 }
