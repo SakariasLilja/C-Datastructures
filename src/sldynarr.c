@@ -192,3 +192,19 @@ DynArr* dynarr_qsort(DynArr *arr, int(*compar)(const void*, const void*)) {
 
     return arr;
 }
+
+DynArr* dynarr_reverse(DynArr *arr) {
+    unsigned int i = 0;
+    unsigned int j = arr->size - 1;
+    int *values = arr->values;
+
+    while(i < j) {
+        int temp = values[i];
+        values[i] = values[j];
+        values[j] = temp;
+        i++;
+        j--;
+    }
+
+    return arr;
+}

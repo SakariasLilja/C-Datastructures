@@ -253,4 +253,12 @@ void dynarr_print(DynArr *arr);
  */
 DynArr* dynarr_qsort(DynArr *arr, int(*compar)(const void*, const void*));
 
+/**
+ * @brief Reverses the order of the elements in the dynamic array
+ * 
+ * @param arr The dynamic array to reverse
+ * @return DynArr* The reversed dynamic array
+ */
+DynArr* dynarr_reverse(DynArr *arr);
+
 #endif
