@@ -97,3 +97,53 @@ float* dynarrSortPerformance() {
 
     return times;
 }
+
+float* dynarrReversePerformance() {
+    warmup();
+    float *times = calloc(TEST_SIZE, sizeof(float));
+
+    if(times == NULL) {
+        return NULL;
+    }
+
+    printf("Measuring dynamic array reverse performance...\n");
+    for(int i = 0; i < TEST_SIZE; i++) {
+        DynArr *arr = dynarr_init();
+        for(unsigned int j = 0; j < ARR[i]; j++) {
+            dynarr_add(arr, 1);
+        }
+        clock_t ticks = clock();
+        dynarr_reverse(arr);
+        ticks = clock() - ticks;
+        times[i] = (((float)ticks)/CLOCKS_PER_SEC) * 1000.0F;
+        dynarr_free(arr);
+    }
+    printf("Done!\n");
+
+    return times;
+}
+
+float* dynarrGetPerformance() {
+    warmup();
+    float *times = calloc(TEST_SIZE, sizeof(float));
+
+    if(times == NULL) {
+        return NULL;
+    }
+
+    printf("Measuring dynamic array get performance...\n");
+    for(int i = 0; i < TEST_SIZE; i++) {
+        DynArr *arr = dynarr_init();
+        for(unsigned int j = 0; j < ARR[i]; j++) {
+            dynarr_add(arr, 1);
+        }
+        clock_t ticks = clock();
+        dynarr_get(arr, ARR[i] - 2);
+        ticks = clock() - ticks;
+        times[i] = (((float)ticks)/CLOCKS_PER_SEC) * 1000.0F;
+        dynarr_free(arr);
+    }
+    printf("Done!\n");
+
+    return times;
+}
