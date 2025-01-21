@@ -115,4 +115,25 @@ float* dynarrSearchPerformance();
  */
 float* dynarrRemovePerformance();
 
+/**
+ * @brief Measures the performance of the hash set's add method
+ * 
+ * @return float* An array of times in ms
+ */
+float* setAddPerformance();
+
+/**
+ * @brief Measures the performance of the hash set's contains method
+ * 
+ * @return float* An array of times in ms
+ */
+float* setSearchPerformance();
+
+/**
+ * @brief Measures the performance of the hash set's remove method
+ * 
+ * @return float* An array of times in ms
+ */
+float* setRemovePerformance();
+
 #endif
