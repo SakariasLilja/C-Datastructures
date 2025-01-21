@@ -10,6 +10,14 @@ extern const unsigned int ARR[];
 void warmup();
 
 /**
+ * @brief Consumes a list performance test and prints out the times
+ * 
+ * @param func Performance function to test
+ * @return int If the test was successfully run
+ */
+int performanceTest(float*(*func)());
+
+/**
  * @brief Measures the performance of the list's append method
  * 
  * @return float* An array of times in ms
@@ -17,12 +25,11 @@ void warmup();
 float* listAddPerformance();
 
 /**
- * @brief Consumes a list performance test and prints out the times
+ * @brief Measures the performance of the list's insert method
  * 
- * @param func Performance function to test
- * @return int If the test was successfully run
+ * @return float* An array of times in ms
  */
-int performanceTest(float*(*func)());
+float* listInsertPerformance();
 
 /**
  * @brief Measures the performance of the list's sort method
@@ -65,5 +72,19 @@ float* dynarrInsertPerformance();
  * @return float* An array of times in ms
  */
 float* dynarrSortPerformance();
+
+/**
+ * @brief Measures the performance of the dynamic array's reverse method
+ * 
+ * @return float* An array of times in ms
+ */
+float* dynarrReversePerformance();
+
+/**
+ * @brief Measures the performance of the dynamic array's get method
+ * 
+ * @return float* An array of times in ms
+ */
+float* dynarrGetPerformance();
 
 #endif
