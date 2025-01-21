@@ -53,6 +53,13 @@ float* listReversePerformance();
 float* listGetPerformance();
 
 /**
+ * @brief Measures the performance of the list's search method
+ * 
+ * @return float* An array of times in ms
+ */
+float* listSearchPerformance();
+
+/**
  * @brief Measures the performance of the dynamic array's add method
  * 
  * @return float* An array of times in ms
@@ -86,5 +93,12 @@ float* dynarrReversePerformance();
  * @return float* An array of times in ms
  */
 float* dynarrGetPerformance();
+
+/**
+ * @brief Measures the performance of the dynamic array's search method
+ * 
+ * @return float* An array of times in ms
+ */
+float* dynarrSearchPerformance();
 
 #endif
